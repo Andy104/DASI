@@ -10,15 +10,15 @@ public class Main {
 
 		userContainer.run(args);
 		try {
-// 			Initialization of all main agents
+//			Initialization of all main agents
 			userContainer.addAgent("TextProcessing", TextProcessingAgent.class.getName());
-
-// 			Initialization of user/server agent
-			userContainer.addAgent("UserAgent", UserAgent.class.getName());
+			
+//			Initialization of user/server agent
+			userContainer.addAgent("User", UserAgent.class.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-//			userContainer.kill();
+			userContainer.kill();
 		}
 	}
 

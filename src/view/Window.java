@@ -7,7 +7,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import core.Listener;
 import jade.core.Agent;
@@ -19,7 +18,8 @@ public class Window extends JFrame implements Listener {
 	private static final int WINDOW_HEIGHT = 480;
 	
 	private Agent agent = null;
-	private JPanel pane = null;
+	private MenuBar menuBar = null;
+	private ChatMenu chatMenu = null;
 
 	public Window(Agent agent) {
 		this.agent = agent;
@@ -44,11 +44,33 @@ public class Window extends JFrame implements Listener {
 	
 	private void initListeners() {
 //		Listeners initialization
+
+		this.menuBar = new MenuBar();
+		this.chatMenu = new ChatMenu();
+
+		init();
+	}
+
+	private void init() {
+		// Window initialization
+		setResizable(true);
+		setSize(new Dimension(300, 300));
+		setTitle(agent.getLocalName());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		add(menuBar);
+		add(chatMenu);
+
+		setVisible(true);
+
+		// Listeners initialization
 		addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
 				agent.doDelete();
+				// TODO Auto-generated method stub
+				super.windowClosing(e);
 			}
 
 		});
@@ -68,7 +90,7 @@ public class Window extends JFrame implements Listener {
 	public void repaint() {
 //		Repaint all components in the window, update to the new state
 
-//		Repaint whole window
+		// Repaint whole window
 		super.repaint();
 	}
 
@@ -80,16 +102,12 @@ public class Window extends JFrame implements Listener {
 
 	@Override
 	public void onWindowLoad() {
-		// TODO Auto-generated method stub
+		System.out.println("GUI opened");
 	}
 
 	@Override
 	public void onAgentInitialized() {
 		repaint();
-	}
-	
-	public Agent getUserAgent() {
-		return agent;
 	}
 
 }

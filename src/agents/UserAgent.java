@@ -25,8 +25,6 @@ public class UserAgent extends Agent {
 
 	@Override
 	protected void setup() {
-		// TODO Behaviours for first actions of agent, before creating Window, e.g.
-		// checking the connection between agents
 		// addBehaviour()
 		
 		createGUI();

@@ -1,9 +1,7 @@
 package agents;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
-
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 import core.Listener;
 import jade.core.AID;
@@ -16,11 +14,13 @@ public class UserAgent extends Agent {
 	private ArrayList<Listener> observers = null;
 	private ArrayList<AID> aids = null;
 
-	private Window mainWindow = null;
+	private Window window = null;
 
 	public UserAgent() {
 		this.observers = new ArrayList<>();
 		this.aids = new ArrayList<>();
+		
+		this.window = new Window(this);
 	}
 
 	@Override
@@ -33,49 +33,22 @@ public class UserAgent extends Agent {
 	private void createGUI() {
 		System.out.println("Building GUI...");
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					window.setView("LoginView");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-
-		this.mainWindow = new Window(this);
-		addObserver(mainWindow);
 	}
 
 	@Override
 	protected void takeDown() {
-		mainWindow.dispose();
+		window.dispose();
 
 		System.out.println("Closing GUI...");
 	}
-
-	public void addObserver(Listener observer) {
-		if (!this.observers.contains(observer)) {
-			this.observers.add(observer);
-		}
-	}
-
-	public ArrayList<Listener> getObservers() {
-		return observers;
-	}
-
-	public void addAID(AID aid) {
-		if (!this.aids.contains(aid)) {
-			this.aids.add(aid);
-		}
-	}
-
-	public ArrayList<AID> getAIDs() {
-		return aids;
-	}
-
-	public Window getMainWindow() {
-		return mainWindow;
-	}
+	
 }

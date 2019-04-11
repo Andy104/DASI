@@ -3,6 +3,7 @@ package agents;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
+import agents.behaviours.SendBehaviour;
 import core.Listener;
 import jade.core.AID;
 import jade.core.Agent;
@@ -25,8 +26,6 @@ public class UserAgent extends Agent {
 
 	@Override
 	protected void setup() {
-		// addBehaviour()
-		
 		createGUI();
 	}
 
@@ -49,6 +48,12 @@ public class UserAgent extends Agent {
 		window.dispose();
 
 		System.out.println("Closing GUI...");
+	}
+	
+	public void sendMessage(String receiver, String content) {
+//		addBehaviour(new SendBehaviour(receiver, content));
+		
+		addBehaviour(new SendBehaviour(FlightAgent.class.getSimpleName(), "Madrid"));
 	}
 	
 }

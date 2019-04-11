@@ -17,7 +17,9 @@ public class SendAction implements ActionListener {
 		
 		String content = ((JTextField)view.getComponent(1)).getText();
 		
-		System.out.println(content);
+		if (content != null && !content.isEmpty()) {
+			System.out.println(content);
+		}
 	}
 
 }

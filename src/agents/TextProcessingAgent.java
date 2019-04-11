@@ -1,5 +1,6 @@
 package agents;
 
+import agents.behaviours.ReceiveBehaviour;
 import jade.core.Agent;
 
 public class TextProcessingAgent extends Agent {
@@ -8,6 +9,8 @@ public class TextProcessingAgent extends Agent {
 	@Override
 	protected void setup() {
 		System.out.println("TextProcessingAgent.setup");
+		
+		addBehaviour(new ReceiveBehaviour());
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class LoginView extends JPanel {
 //		Layout initialization
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {30};
-		gridBagLayout.rowHeights = new int[] {30, 30, 20, 30, 30, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[] {30, 30, 20, 30, 30, 30, 30, 30};
 		gridBagLayout.columnWeights = new double[]{0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		setLayout(gridBagLayout);
